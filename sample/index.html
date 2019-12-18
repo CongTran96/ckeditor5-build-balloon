@@ -8,6 +8,24 @@
 			max-width: 800px;
 			margin: 20px auto;
 		}
+
+		.text-tiny {
+			font-size: 0.7em;
+		}
+
+		.text-small {
+			font-size: 0.85em;
+		}
+
+		.text-big {
+			font-size: 1.4em;
+		}
+
+		.text-huge {
+			font-size: 1.8em;
+		}
+
+
 	</style>
 </head>
 <body>
@@ -27,9 +45,22 @@
 </div>
 
 <script src="../build/ckeditor.js"></script>
+<script src="../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js"></script>
 <script>
-	BalloonEditor.create( document.querySelector( '#editor' ) )
+	BalloonEditor.create( document.querySelector( '#editor' ), {
+		toolbar: [ 'heading', 'bold', 'italic', 'underline', 'link', '|', 'fontSize', 'fontColor', 'fontBackgroundColor', '|',  'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify'],
+		fontSize: {
+            options: [
+                'default',
+                'tiny',
+                'big',
+                'huge'
+            ]
+        },
+		placeholder: 'Text title here',
+		})
 		.then( editor => {
+			CKEditorInspector.attach( editor );
 			window.editor = editor;
 		} )
 		.catch( error => {
